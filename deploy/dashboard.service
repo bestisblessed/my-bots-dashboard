@@ -1,0 +1,23 @@
+[Unit]
+Description=RPi Dashboard (Next.js)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=trinity
+WorkingDirectory=/home/trinity/my-bots-dashboard
+Environment=NODE_ENV=production
+Environment=PORT=3000
+Environment=HOSTNAME=127.0.0.1
+Environment=AUTH_SECRET=CHANGE_ME
+Environment=DASHBOARD_PASSWORD=CHANGE_ME
+Environment=ALLOWED_SERVICES=flaskapp.service,nginx.service
+ExecStart=/usr/bin/npm run start -- -H 127.0.0.1 -p 3000
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
+
+

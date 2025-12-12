@@ -1,0 +1,29 @@
+# Install as: /etc/sudoers.d/rpi-dashboard
+#
+# Adjust the service names to match your ALLOWED_SERVICES, e.g.:
+# Cmnd_Alias DASHBOARD_SYSTEMCTL = /bin/systemctl start ssh.service, /bin/systemctl stop ssh.service, ...
+#
+# IMPORTANT: use visudo to validate sudoers syntax.
+
+Defaults:trinity !requiretty
+
+User_Alias DASHBOARD_USER = trinity
+
+# Exact allowlisted units (no wildcards):
+Cmnd_Alias DASHBOARD_SYSTEMCTL = \
+  /bin/systemctl start flaskapp.service, \
+  /bin/systemctl stop flaskapp.service, \
+  /bin/systemctl restart flaskapp.service, \
+  /bin/systemctl enable flaskapp.service, \
+  /bin/systemctl disable flaskapp.service, \
+  /bin/systemctl status flaskapp.service, \
+  /bin/systemctl start nginx.service, \
+  /bin/systemctl stop nginx.service, \
+  /bin/systemctl restart nginx.service, \
+  /bin/systemctl enable nginx.service, \
+  /bin/systemctl disable nginx.service, \
+  /bin/systemctl status nginx.service
+
+DASHBOARD_USER ALL=(root) NOPASSWD: DASHBOARD_SYSTEMCTL
+
+

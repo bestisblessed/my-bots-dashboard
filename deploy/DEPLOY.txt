@@ -1,0 +1,29 @@
+RPi Dashboard deployment (Raspberry Pi OS)
+
+1) Build the app
+   - npm install
+   - npm run build
+
+2) Create a systemd service
+   - Copy deploy/dashboard.service -> /etc/systemd/system/rpi-dashboard.service
+   - Edit:
+     - WorkingDirectory
+     - User
+     - AUTH_SECRET
+     - DASHBOARD_PASSWORD
+     - ALLOWED_SERVICES (comma-separated). For your setup:
+       - flaskapp.service,nginx.service
+   - sudo systemctl daemon-reload
+   - sudo systemctl enable --now rpi-dashboard
+
+3) Restrict sudo for systemctl actions (required for service control)
+   - Copy deploy/sudoers-dashboard -> /etc/sudoers.d/rpi-dashboard
+   - This repo template already includes flaskapp.service + nginx.service
+   - sudo visudo -c
+
+4) Expose only on your tailnet
+   - Keep Next.js bound to 127.0.0.1 (see dashboard.service)
+   - Use Tailscale to serve localhost:3000 to your tailnet (example):
+     - tailscale serve --http=443 http://127.0.0.1:3000
+
+
