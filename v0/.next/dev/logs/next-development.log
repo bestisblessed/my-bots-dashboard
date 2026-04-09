@@ -1,0 +1,16 @@
+[00:00:00.447] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:00.496] Server  LOG      ✓ Ready in 375ms
+[00:00:03.424] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:03.564] Server  ERROR   Error: Command failed: cat /proc/meminfo
+cat: /proc/meminfo: No such file or directory
+
+[00:00:03.566] Server  ERROR   Error: Command failed: crontab -l
+crontab: no crontab for td
+
+[00:00:03.569] Server  ERROR   Error: Command failed: ps -eo pid,comm,%cpu,%mem,etime --sort=-%cpu
+ps: illegal option -- -
+usage: ps [-AaCcEefhjlMmrSTvwXx] [-O fmt | -o fmt] [-G gid[,gid...]]
+          [-g grp[,grp...]] [-u [uid,uid...]]
+          [-p pid[,pid...]] [-t tty[,tty...]] [-U user[,user...]]
+       ps [-L]
+
